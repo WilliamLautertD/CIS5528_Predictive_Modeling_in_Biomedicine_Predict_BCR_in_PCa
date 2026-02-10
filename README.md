@@ -56,3 +56,7 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/
+
+# Citations 
+
+- [Common Limitations of Image Processing Metrics: A Picture Story. REINKE, A. et al. (2023).](https://arxiv.org/pdf/2104.05642)
