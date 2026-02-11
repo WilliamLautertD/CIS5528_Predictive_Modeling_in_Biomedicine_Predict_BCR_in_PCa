@@ -1,0 +1,5 @@
+Chimera_data_task1/
+CLAUDE.md
+.claude/
+.*
+!.gitignore
