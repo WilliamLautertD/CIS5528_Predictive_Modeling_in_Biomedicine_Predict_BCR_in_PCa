@@ -53,6 +53,42 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 
 -   Citation: __[Saha A, Bosma JS, Twilt JJ, et al. Artificial intelligence and radiologists in prostate cancer detection on MRI (PI-CAI): an international, paired, non-inferiority, confirmatory study. Lancet Oncol 2024; 25: 879–887](https://www.thelancet.com/journals/lanonc/article/PIIS1470-2045(24)00220-1/fulltext)__  
 
+## CHIMERA Challenge (Task 1) [WIP]
+
+### Chimera data set summary
+
+| Characteristic                        | Frequency              |
+|:--------------------------------------|:----------------------:|
+| Number of patients                    | 95                     |
+| — BCR negative (no recurrence)        | 68 (72%)               |
+| — BCR positive (recurrence)           | 27 (28%)               |
+| Median age (years)                    | 66 (IQR: 60–69)        |
+| Median pre-operative PSA (ng/mL)      | 7.8 (IQR: 5.2–12.0)   |
+| Median follow-up time (months)        | 38.0 (IQR: 18.6–58.4) |
+| **ISUP grade group**                  |                        |
+| — ISUP 1                              | 8 (8%)                 |
+| — ISUP 2                              | 44 (46%)               |
+| — ISUP 3                              | 27 (28%)               |
+| — ISUP 4                              | 7 (7%)                 |
+| — ISUP 5                              | 9 (9%)                 |
+| **Pathological T stage**              |                        |
+| — pT2                                 | 34 (36%)               |
+| — pT2a                                | 1 (1%)                 |
+| — pT2c                                | 16 (17%)               |
+| — pT3a                                | 28 (29%)               |
+| — pT3b                                | 11 (12%)               |
+| — pT4                                 | 4 (4%)                 |
+| — pT4b                                | 1 (1%)                 |
+| **Pathological features**             |                        |
+| Positive surgical margins             | 50/95 (53%)            |
+| Capsular penetration                  | 39/91 (43%)            |
+| Seminal vesicle invasion              | 14/95 (15%)            |
+| Lymphovascular invasion               | 17/95 (18%)            |
+| Positive lymph nodes                  | 10/42 (24%)            |
+| **Earlier therapy**                   |                        |
+| — None                                | 92 (97%)               |
+| — Other/unknown                       | 3 (3%)                 |
+
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/
