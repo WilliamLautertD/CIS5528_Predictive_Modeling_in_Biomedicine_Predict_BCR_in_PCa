@@ -4,3 +4,4 @@ CLAUDE.md
 .*
 !.gitignore
 EDA/*.py
+previews/
