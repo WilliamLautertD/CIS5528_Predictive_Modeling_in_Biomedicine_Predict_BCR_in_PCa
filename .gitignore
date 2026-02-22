@@ -5,3 +5,4 @@ CLAUDE.md
 !.gitignore
 EDA/*.py
 previews/
+extract_wsi_previews.py
