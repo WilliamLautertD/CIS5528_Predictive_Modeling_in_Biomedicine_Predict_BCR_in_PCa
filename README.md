@@ -89,6 +89,15 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 | — None                                | 92 (97%)               |
 | — Other/unknown                       | 3 (3%)                 |
 
+### WSI pyramidal TIF structure
+- 190 whole-slide images (H&E), stored as pyramidal TIFFs with multiple resolution levels
+- **WSI levels** (most slides have 5): level 0 = full resolution (~100k–170k px), then 4x, 16x, 64x, 256x downsamples
+- **Tissue mask levels** (most have 7): start at 4x downsample (= WSI level 1), then step by 2x down to 64x
+- Mask level 0 spatially matches WSI level 1 — no resize needed at that scale
+- Pre-extracted patch features (`.pt`) and coordinates (`.npy`) are provided for all 190 slides
+
+`extract_wsi_previews.py` generates thumbnail and level-3 (64x) PNG previews for all WSIs into `previews/`.
+
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/

@@ -1,12 +1,13 @@
+# Hidden files (covers .claude/, .DS_Store, etc.)
+.*
+!.gitignore
+
+# Project-specific
 scratch/
 data/
-.claude/
+Chimera_data_task1/
+previews/
 CLAUDE.md
 
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-.Spotlight-V100
-.Trashes
+# Jupytext .py counterparts (only .ipynb tracked)
+EDA/*.py
