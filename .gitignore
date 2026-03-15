@@ -1,8 +1,4 @@
-Chimera_data_task1/
-CLAUDE.md
+scratch/
+data/
 .claude/
-.*
-!.gitignore
-EDA/*.py
-previews/
-extract_wsi_previews.py
+CLAUDE.md
