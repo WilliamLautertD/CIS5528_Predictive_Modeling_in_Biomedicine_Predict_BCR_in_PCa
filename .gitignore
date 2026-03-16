@@ -9,6 +9,15 @@ Chimera_data_task1/
 previews/
 CLAUDE.md
 
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
 # Jupytext .py counterparts (only .ipynb tracked)
 EDA/*.py
 
