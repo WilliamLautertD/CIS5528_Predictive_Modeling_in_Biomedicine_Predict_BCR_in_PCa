@@ -98,6 +98,10 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 
 `extract_wsi_previews.py` generates thumbnail and level-3 (64x) PNG previews for all WSIs into `previews/`.
 
+###MRI
+`MRI.ipynb` extracts image features and saves a csv file containing them.
+`encoding.ipynb` compresses MRI radiometric features into 2- and 8-dimensional latent embeddings with an unsupervised autoencoder.
+
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/
