@@ -11,3 +11,6 @@ CLAUDE.md
 
 # Jupytext .py counterparts (only .ipynb tracked)
 EDA/*.py
+
+#TK stuff
+mri_oof_embeddings.npy
