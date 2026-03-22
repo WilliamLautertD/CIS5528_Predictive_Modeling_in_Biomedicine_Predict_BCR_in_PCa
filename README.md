@@ -102,6 +102,10 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 `MRI.ipynb` extracts image features and saves a csv file containing them.
 `encoding.ipynb` compresses MRI radiometric features into 2- and 8-dimensional latent embeddings with an unsupervised autoencoder.
 
+### Clinical Data
+`clinicalEncodings.ipynb` compresses clinical data into 16 dimensional embeddings
+`clinicalModels.ipynb` fits logistic regression and random forest to clinical data
+
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/
