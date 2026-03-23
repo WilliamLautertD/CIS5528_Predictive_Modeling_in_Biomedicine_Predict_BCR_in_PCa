@@ -168,49 +168,73 @@ def load_train_set(n_tiles=3000, pca_dim=None):
     return sampled, None
 
 
-def save_output(patient_data, pca_info, output_dir, n_tiles, pca_dim):
-    """Save per-patient .pt files and a variance summary .txt."""
+def save_output(patient_data, pca_info, output_dir, n_tiles, pca_dim=None):
+    """Save per-patient .pt files and optionally a variance summary .txt."""
     os.makedirs(output_dir, exist_ok=True)
 
     for pid, bcr, feats, coords in patient_data:
         torch.save(feats, os.path.join(output_dir, f"{pid}.pt"))
 
-    # Write variance report
-    lines = []
-    lines.append(f"Patch Sampler Output")
-    lines.append(f"====================")
-    lines.append(f"Seed:           {SEED}")
-    lines.append(f"Tiles/patient:  {n_tiles}")
-    lines.append(f"Tissue filter:  >={TISSUE_THRESHOLD:.0%}")
-    lines.append(f"PCA:            1024 -> {pca_dim}")
-    lines.append(f"")
-    lines.append(f"Global variance retained: {pca_info['global_variance_retained']:.4f} "
-                 f"({pca_info['global_variance_retained']:.1%})")
-    lines.append(f"")
-    lines.append(f"Per-component variance:")
-    for i, v in enumerate(pca_info["per_component"]):
-        cumulative = sum(pca_info["per_component"][:i+1])
-        lines.append(f"  PC{i+1}: {v:.4f} (cumulative: {cumulative:.4f})")
-    lines.append(f"")
-    lines.append(f"Per-patient variance retained:")
-    for pid, bcr, feats, coords in patient_data:
-        var = pca_info["per_patient"][pid]
-        lines.append(f"  {pid} (BCR={bcr}): {var:.4f} ({var:.1%})")
+    if pca_info is None:
+        # Raw features — just write a simple summary
+        lines = [
+            "Patch Sampler Output",
+            "====================",
+            f"Seed:           {SEED}",
+            f"Tiles/patient:  {n_tiles}",
+            f"Tissue filter:  >={TISSUE_THRESHOLD:.0%}",
+            f"PCA:            none (raw 1024-dim)",
+            "",
+        ]
+        for pid, bcr, feats, coords in patient_data:
+            lines.append(f"  {pid} (BCR={bcr}): {tuple(feats.shape)}")
+    else:
+        lines = []
+        lines.append(f"Patch Sampler Output")
+        lines.append(f"====================")
+        lines.append(f"Seed:           {SEED}")
+        lines.append(f"Tiles/patient:  {n_tiles}")
+        lines.append(f"Tissue filter:  >={TISSUE_THRESHOLD:.0%}")
+        lines.append(f"PCA:            1024 -> {pca_dim}")
+        lines.append(f"")
+        lines.append(f"Global variance retained: {pca_info['global_variance_retained']:.4f} "
+                     f"({pca_info['global_variance_retained']:.1%})")
+        lines.append(f"")
+        lines.append(f"Per-component variance:")
+        for i, v in enumerate(pca_info["per_component"]):
+            cumulative = sum(pca_info["per_component"][:i+1])
+            lines.append(f"  PC{i+1}: {v:.4f} (cumulative: {cumulative:.4f})")
+        lines.append(f"")
+        lines.append(f"Per-patient variance retained:")
+        for pid, bcr, feats, coords in patient_data:
+            var = pca_info["per_patient"][pid]
+            lines.append(f"  {pid} (BCR={bcr}): {var:.4f} ({var:.1%})")
 
-    report_path = os.path.join(output_dir, "pca_variance_report.txt")
+    report_path = os.path.join(output_dir, "report.txt")
     with open(report_path, "w") as f:
         f.write("\n".join(lines) + "\n")
 
-    print(f"Saved {len(patient_data)} .pt files and variance report to {output_dir}/")
+    print(f"Saved {len(patient_data)} .pt files to {output_dir}/")
 
 
 if __name__ == "__main__":
+    import sys
+
     N_TILES = 3000
-    PCA_DIM = 64
-    OUTPUT_DIR = os.path.join(DATA_ROOT, f"pathology/features/sampled_pca{PCA_DIM}")
+
+    # Usage: python patch_sampler.py [pca_dim]
+    # pca_dim = 8, 64, or omit for raw 1024-dim
+    if len(sys.argv) > 1:
+        PCA_DIM = int(sys.argv[1])
+        tag = f"sampled_pca{PCA_DIM}"
+    else:
+        PCA_DIM = None
+        tag = "sampled_1024"
+
+    OUTPUT_DIR = os.path.join(DATA_ROOT, f"pathology/features/{tag}")
 
     patient_data, pca_info = load_train_set(n_tiles=N_TILES, pca_dim=PCA_DIM)
-    save_output(patient_data, pca_info, OUTPUT_DIR, N_TILES, PCA_DIM)
+    save_output(patient_data, pca_info, OUTPUT_DIR, N_TILES, pca_dim=PCA_DIM)
 
     for pid, bcr, feats, coords in patient_data:
         print(f"  {pid} (BCR={bcr}): {tuple(feats.shape)}")
