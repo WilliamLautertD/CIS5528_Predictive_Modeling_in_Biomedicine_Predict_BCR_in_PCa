@@ -219,31 +219,99 @@ def save_output(patient_data, pca_info, output_dir, n_tiles, pca_dim=None):
 
 if __name__ == "__main__":
     import sys
+    import pickle
     import pandas as pd
     from datetime import datetime
+    from sklearn.decomposition import PCA
 
-    N_TILES = 3000
-    OUTPUT_DIR = os.path.join(DATA_ROOT, "pathology/features/sampled_1024")
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    TILE_COUNTS = [3000, 50000]
+    PCA_DIMS = [64, 8]
+    FEAT_BASE = os.path.join(DATA_ROOT, "pathology/features")
+
+    def log(msg):
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}", flush=True)
+
+    def dir_for(dim_label, n_tiles):
+        suffix = "_50k" if n_tiles == 50000 else ""
+        return os.path.join(FEAT_BASE, f"sampled_{dim_label}{suffix}")
 
     # Load all patients
     df = pd.read_csv(os.path.join(DATA_ROOT, "preliminary_split.csv"))
+    train_ids = set(df[df["split"] == "train"]["patient_id"].astype(str))
     total = len(df)
 
-    done = 0
-    skipped = 0
-    for i, row in df.iterrows():
-        pid = str(row["patient_id"])
-        out_path = os.path.join(OUTPUT_DIR, f"{pid}.pt")
+    # ── Step 1: Sample 1024D for all patients at both tile counts ──
+    for n_tiles in TILE_COUNTS:
+        out_dir = dir_for("1024", n_tiles)
+        os.makedirs(out_dir, exist_ok=True)
+        log(f"── 1024D, {n_tiles} tiles → {out_dir}")
 
-        if os.path.exists(out_path):
-            skipped += 1
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [{skipped+done}/{total}] {pid} — skipped (exists)", flush=True)
-            continue
+        for i, row in df.iterrows():
+            pid = str(row["patient_id"])
+            out_path = os.path.join(out_dir, f"{pid}.pt")
 
-        feats, coords = sample_patient(pid, n_tiles=N_TILES)
-        torch.save(feats, out_path)
-        done += 1
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] [{skipped+done}/{total}] {pid} — saved {tuple(feats.shape)}", flush=True)
+            if os.path.exists(out_path):
+                log(f"  [{i+1}/{total}] {pid} — skipped (exists)")
+                continue
 
-    print(f"\nDone: {done} new, {skipped} skipped, {total} total", flush=True)
+            feats, coords = sample_patient(pid, n_tiles=n_tiles)
+            torch.save(feats, out_path)
+            log(f"  [{i+1}/{total}] {pid} — saved {tuple(feats.shape)}")
+
+    # ── Step 2: Fit PCA on train patients (using 3k tiles) ──
+    log("── Fitting PCA on train patients (3k tiles) ──")
+    train_feats_list = []
+    for pid in sorted(train_ids):
+        feats = torch.load(
+            os.path.join(dir_for("1024", 3000), f"{pid}.pt"),
+            map_location="cpu", weights_only=True,
+        )
+        train_feats_list.append(feats)
+    train_feats_all = torch.cat(train_feats_list, dim=0).numpy()
+    log(f"  Train tile matrix: {train_feats_all.shape}")
+
+    pca_objects = {}
+    for pca_dim in PCA_DIMS:
+        pca = PCA(n_components=pca_dim, random_state=SEED)
+        pca.fit(train_feats_all)
+        pca_objects[pca_dim] = pca
+
+        pkl_path = os.path.join(FEAT_BASE, f"pca_{pca_dim}.pkl")
+        with open(pkl_path, "wb") as f:
+            pickle.dump(pca, f)
+        log(f"  PCA {pca_dim}D: variance retained = {pca.explained_variance_ratio_.sum():.4f} — saved {pkl_path}")
+
+    del train_feats_all  # free memory
+
+    # ── Step 3: Apply PCA to all patients at both tile counts ──
+    for pca_dim in PCA_DIMS:
+        pca = pca_objects[pca_dim]
+        for n_tiles in TILE_COUNTS:
+            src_dir = dir_for("1024", n_tiles)
+            out_dir = dir_for(f"pca{pca_dim}", n_tiles)
+            os.makedirs(out_dir, exist_ok=True)
+            log(f"── PCA {pca_dim}D, {n_tiles} tiles → {out_dir}")
+
+            for i, row in df.iterrows():
+                pid = str(row["patient_id"])
+                out_path = os.path.join(out_dir, f"{pid}.pt")
+
+                if os.path.exists(out_path):
+                    log(f"  [{i+1}/{total}] {pid} — skipped (exists)")
+                    continue
+
+                feats = torch.load(
+                    os.path.join(src_dir, f"{pid}.pt"),
+                    map_location="cpu", weights_only=True,
+                )
+                reduced = pca.transform(feats.numpy())
+                torch.save(torch.from_numpy(reduced).float(), out_path)
+                log(f"  [{i+1}/{total}] {pid} — saved {tuple(reduced.shape)}")
+
+    log("\n── Done! ──")
+    log("Directories created:")
+    for n_tiles in TILE_COUNTS:
+        for label in ["1024"] + [f"pca{d}" for d in PCA_DIMS]:
+            d = dir_for(label, n_tiles)
+            n_files = len([f for f in os.listdir(d) if f.endswith(".pt")])
+            log(f"  {d} — {n_files} files")
