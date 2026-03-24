@@ -296,10 +296,6 @@ if __name__ == "__main__":
                 pid = str(row["patient_id"])
                 out_path = os.path.join(out_dir, f"{pid}.pt")
 
-                if os.path.exists(out_path):
-                    log(f"  [{i+1}/{total}] {pid} — skipped (exists)")
-                    continue
-
                 feats = torch.load(
                     os.path.join(src_dir, f"{pid}.pt"),
                     map_location="cpu", weights_only=True,
