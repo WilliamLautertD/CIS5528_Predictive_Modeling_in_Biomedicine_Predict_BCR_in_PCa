@@ -219,22 +219,31 @@ def save_output(patient_data, pca_info, output_dir, n_tiles, pca_dim=None):
 
 if __name__ == "__main__":
     import sys
+    import pandas as pd
+    from datetime import datetime
 
     N_TILES = 3000
+    OUTPUT_DIR = os.path.join(DATA_ROOT, "pathology/features/sampled_1024")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    # Usage: python patch_sampler.py [pca_dim]
-    # pca_dim = 8, 64, or omit for raw 1024-dim
-    if len(sys.argv) > 1:
-        PCA_DIM = int(sys.argv[1])
-        tag = f"sampled_pca{PCA_DIM}"
-    else:
-        PCA_DIM = None
-        tag = "sampled_1024"
+    # Load all patients
+    df = pd.read_csv(os.path.join(DATA_ROOT, "preliminary_split.csv"))
+    total = len(df)
 
-    OUTPUT_DIR = os.path.join(DATA_ROOT, f"pathology/features/{tag}")
+    done = 0
+    skipped = 0
+    for i, row in df.iterrows():
+        pid = str(row["patient_id"])
+        out_path = os.path.join(OUTPUT_DIR, f"{pid}.pt")
 
-    patient_data, pca_info = load_train_set(n_tiles=N_TILES, pca_dim=PCA_DIM)
-    save_output(patient_data, pca_info, OUTPUT_DIR, N_TILES, pca_dim=PCA_DIM)
+        if os.path.exists(out_path):
+            skipped += 1
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [{skipped+done}/{total}] {pid} — skipped (exists)", flush=True)
+            continue
 
-    for pid, bcr, feats, coords in patient_data:
-        print(f"  {pid} (BCR={bcr}): {tuple(feats.shape)}")
+        feats, coords = sample_patient(pid, n_tiles=N_TILES)
+        torch.save(feats, out_path)
+        done += 1
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [{skipped+done}/{total}] {pid} — saved {tuple(feats.shape)}", flush=True)
+
+    print(f"\nDone: {done} new, {skipped} skipped, {total} total", flush=True)
