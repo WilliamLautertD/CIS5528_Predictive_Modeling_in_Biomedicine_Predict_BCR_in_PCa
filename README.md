@@ -106,6 +106,8 @@ Repository for CIS5528 project class. Our goal is to predict BCR in prostate can
 `clinicalEncodings.ipynb` compresses clinical data into 16 dimensional embeddings
 `clinicalModels.ipynb` fits logistic regression and random forest to clinical data
 
+`clinical_full.ipynb` compresses the full dataset into 64 dimensional embeddings
+
 # Algorithms
 
 - Prostate segmentation: https://grand-challenge.org/algorithms/prostate-segmentation/
