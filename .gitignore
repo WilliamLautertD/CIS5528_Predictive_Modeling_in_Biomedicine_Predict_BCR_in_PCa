@@ -1,8 +1,25 @@
-Chimera_data_task1/
-CLAUDE.md
-.claude/
+# Hidden files (covers .claude/, .DS_Store, etc.)
 .*
 !.gitignore
-EDA/*.py
+
+# Project-specific
+scratch/
+data/
+Chimera_data_task1/
 previews/
-extract_wsi_previews.py
+CLAUDE.md
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupytext .py counterparts (only .ipynb tracked)
+EDA/*.py
+
+#TK stuff
+mri_oof_embeddings.npy
