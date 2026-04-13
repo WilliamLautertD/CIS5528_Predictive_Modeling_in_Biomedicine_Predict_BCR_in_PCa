@@ -31,7 +31,7 @@ TRAIN_TB_DIR = os.path.join(TRAIN_OUT_DIR, "tensorboard")
 
 # ----- Phase 2: embedding extraction on downstream cohort -----
 # Edit these for your BCR / downstream cohort.
-CHIMERA_ROOT_DIR = "CHIMERA/radiology/images"
+CHIMERA_ROOT_DIR = "/rs01/home/lauterw/project_MRI/CHIMERA/radiology/images"
 CHIMERA_OUT_DIR = "outputs_chimera_csPCa_embeddings"
 
 TRAIN_BCR_POS = ['1003', '1010', '1030', '1041', '1064', '1086', '1100', '1106', '1127', '1135', '1137', '1165', '1169', '1185', '1195', '1208', '1214', '1217', '1219', '1240', '1258', '1287']
@@ -40,7 +40,7 @@ TEST_BCR_POS = ['1090', '1122', '1130', '1193', '1295']
 TEST_BCR_NEG = ['1011', '1025', '1036', '1037', '1039', '1068', '1107', '1120', '1151', '1184', '1235', '1252', '1267', '1286']
 
 # ----- Run modes -----
-RUN_TRAIN_FINAL = True
+RUN_TRAIN_FINAL = False
 RUN_EXTRACT_CHIMERA = True
 
 # ----- Training hyperparameters -----
