@@ -1,0 +1,35 @@
+{
+  "root_dir": "images",
+  "labels_csv": "marksheet-2.csv",
+  "gland_mask_dir": "picai_labels/anatomical_delineations/whole_gland/AI/Guerbet23",
+  "num_cases": 1500,
+  "class_counts": [
+    1075,
+    425
+  ],
+  "batch_size": 6,
+  "final_epochs": 30,
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "embed_dim": 64,
+  "pool1": [
+    1,
+    2,
+    2
+  ],
+  "pool2": [
+    1,
+    2,
+    2
+  ],
+  "pool3": [
+    2,
+    2,
+    2
+  ]
+}

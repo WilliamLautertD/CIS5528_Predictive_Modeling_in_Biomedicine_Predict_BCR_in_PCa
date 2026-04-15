@@ -1,0 +1,34 @@
+{
+  "num_cases": 95,
+  "embedding_dim": 64,
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "channels": [
+    "t2w",
+    "adc",
+    "hbv"
+  ],
+  "pooling": {
+    "pool1": [
+      1,
+      2,
+      2
+    ],
+    "pool2": [
+      1,
+      2,
+      2
+    ],
+    "pool3": [
+      2,
+      2,
+      2
+    ]
+  },
+  "final_pooling": "global_avg_plus_global_max",
+  "l2_normalized": true,
+  "source_model": "outputs_csPCa_mri_final_model_and_embeddings_PICAI_CHIMERA_all_labels_Dim_64D/best_csPCa_mri_final.pt"
+}
