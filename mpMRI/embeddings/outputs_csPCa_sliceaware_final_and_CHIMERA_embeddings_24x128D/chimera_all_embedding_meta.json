@@ -1,0 +1,37 @@
+{
+  "num_cases": 95,
+  "slice_embedding_shape": [
+    24,
+    128
+  ],
+  "global_embedding_dim": 128,
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "channels": [
+    "t2w",
+    "adc",
+    "hbv"
+  ],
+  "slice_mode": "24x128",
+  "pooling": {
+    "pool1": [
+      1,
+      2,
+      2
+    ],
+    "pool2": [
+      1,
+      2,
+      2
+    ],
+    "pool3": [
+      1,
+      2,
+      2
+    ]
+  },
+  "notes": "slice embeddings preserve depth tokens and global embedding is mean over tokens"
+}
