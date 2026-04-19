@@ -1,0 +1,52 @@
+[06:31:05] Device: cuda
+[06:31:05] Output dir: results/v6_embeddings_20260419_063105
+[06:31:05] GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[06:31:05] Full train: 76  Test: 19
+[06:31:05] Inner train: 64 (BCR+ 19)  Inner val: 12 (BCR+ 3)
+[06:31:05] Loading inner-train features to GPU from data/pathology/features/sampled_1024_200k ...
+[06:32:03] Loading inner-val features to GPU ...
+[06:32:13] Inner-train tile counts: min=16517 max=200000
+[06:32:13] GPU mem after preload: 53.1 GB
+[06:32:13] Model params: 328,579
+[06:32:15]   ep   0  train=1.0133  val=0.8402  *
+[06:32:17]   ep   1  train=0.9481  val=0.9684
+[06:32:18]   ep   2  train=0.8985  val=0.8196  *
+[06:32:19]   ep   3  train=0.7756  val=0.6108  *
+[06:32:21]   ep   4  train=0.7046  val=0.6597
+[06:32:22]   ep   5  train=0.6392  val=0.5910  *
+[06:32:23]   ep   6  train=0.6080  val=0.4997  *
+[06:32:25]   ep   7  train=0.5978  val=0.5284
+[06:32:26]   ep   8  train=0.4316  val=0.7970
+[06:32:27]   ep   9  train=0.5758  val=0.7460
+[06:32:29]   ep  10  train=0.4505  val=0.5755
+[06:32:30]   ep  11  train=0.3694  val=0.6494
+[06:32:31]   ep  12  train=0.3762  val=0.4940  *
+[06:32:33]   ep  13  train=0.3322  val=0.4929  *
+[06:32:34]   ep  14  train=0.2587  val=0.5628
+[06:32:35]   ep  15  train=0.1965  val=0.4030  *
+[06:32:37]   ep  16  train=0.2379  val=1.0214
+[06:32:38]   ep  17  train=0.3181  val=0.5275
+[06:32:39]   ep  18  train=0.1922  val=0.4550
+[06:32:41]   ep  19  train=0.0737  val=0.5518
+[06:32:42]   ep  20  train=0.0714  val=0.4624
+[06:32:43]   ep  21  train=0.0567  val=0.6047
+[06:32:45]   ep  22  train=0.0273  val=0.7960
+[06:32:46]   ep  23  train=0.0213  val=0.5580
+[06:32:47]   ep  24  train=0.0210  val=0.6945
+[06:32:49]   ep  25  train=0.0144  val=0.6885
+[06:32:50]   ep  26  train=0.0114  val=0.7038
+[06:32:51]   ep  27  train=0.0101  val=0.7918
+[06:32:53]   ep  28  train=0.0084  val=0.6741
+[06:32:54]   ep  29  train=0.0103  val=0.8630
+[06:32:55]   ep  30  train=0.0070  val=0.8062
+[06:32:55]   Early stop at epoch 30 (best epoch 15, val_loss 0.4030)
+[06:32:55] Saved weights → results/v6_embeddings_20260419_063105/v6_winner.pt (best epoch 15, val_loss 0.4030)
+[06:32:55] Extracting bag embeddings for all 95 patients ...
+[06:32:56] GPU mem after free: 0.8 GB
+[06:33:29] Embedding matrix: (95, 256)  dtype=float32
+[06:33:29] Saved → results/v6_embeddings_20260419_063105/bag_embeddings.npz
+[06:33:29] Per-split AUC (sanity check, model in eval mode):
+[06:33:43]   train: n=76  AUC=0.997  acc=0.974  bacc=0.968  F1=0.955
+[06:33:46]   test: n=19  AUC=0.829  acc=0.737  bacc=0.693  F1=0.545
+[06:33:46] Saved config → results/v6_embeddings_20260419_063105/config.json
+[06:33:46] Done!
