@@ -26,13 +26,13 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 PICAI_ROOT_DIR = "images"
 PICAI_LABELS_CSV = "marksheet-2.csv"
 PICAI_GLAND_MASK_DIR = "picai_labels/anatomical_delineations/whole_gland/AI/Guerbet23"
-TRAIN_OUT_DIR = "outputs_csPCa_mri_final_model_and_embeddings_CHIMERA_all_labels"
+TRAIN_OUT_DIR = "outputs_csPCa_mri_final_model_and_embeddings_PICAI_CHIMERA_all_labels_Dim_128D"
 TRAIN_TB_DIR = os.path.join(TRAIN_OUT_DIR, "tensorboard")
 
 # ----- Phase 2: embedding extraction on downstream cohort -----
 # Edit these for your BCR / downstream cohort.
-CHIMERA_ROOT_DIR = "/rs01/home/lauterw/project_MRI/CHIMERA/radiology/images"
-CHIMERA_OUT_DIR = "outputs_chimera_csPCa_embeddings"
+CHIMERA_ROOT_DIR = "/home/lauterw/project_MRI/CHIMERA/radiology/images"
+CHIMERA_OUT_DIR = "outputs_chimera_csPCa_embeddings_Dim_128D"
 
 TRAIN_BCR_POS = ['1003', '1010', '1030', '1041', '1064', '1086', '1100', '1106', '1127', '1135', '1137', '1165', '1169', '1185', '1195', '1208', '1214', '1217', '1219', '1240', '1258', '1287']
 TRAIN_BCR_NEG = ['1021', '1026', '1028', '1031', '1035', '1048', '1052', '1056', '1060', '1062', '1066', '1071', '1094', '1112', '1114', '1117', '1123', '1129', '1136', '1140', '1141', '1149', '1174', '1179', '1186', '1188', '1192', '1205', '1206', '1207', '1211', '1212', '1216', '1223', '1227', '1260', '1261', '1262', '1264', '1269', '1279', '1282', '1284', '1285', '1290', '1291', '1293', '1294', '1296', '1298', '1299', '1301', '1303', '1304']
@@ -40,7 +40,7 @@ TEST_BCR_POS = ['1090', '1122', '1130', '1193', '1295']
 TEST_BCR_NEG = ['1011', '1025', '1036', '1037', '1039', '1068', '1107', '1120', '1151', '1184', '1235', '1252', '1267', '1286']
 
 # ----- Run modes -----
-RUN_TRAIN_FINAL = False
+RUN_TRAIN_FINAL = True
 RUN_EXTRACT_CHIMERA = True
 
 # ----- Training hyperparameters -----
@@ -50,7 +50,7 @@ FINAL_EPOCHS = 30
 LR = 1e-4
 WEIGHT_DECAY = 1e-4
 TARGET_SHAPE = (48, 96, 96)
-EMBED_DIM = 64
+EMBED_DIM = 128
 DROPOUT = 0.3
 SEED = 42
 
@@ -760,3 +760,5 @@ if __name__ == "__main__":
         train_final_model()
     if RUN_EXTRACT_CHIMERA:
         extract_chimera_embeddings()
+
+

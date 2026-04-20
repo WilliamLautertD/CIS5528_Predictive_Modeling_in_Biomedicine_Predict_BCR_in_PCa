@@ -1,0 +1,34 @@
+{
+  "num_cases": 95,
+  "embedding_dim": 128,
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "channels": [
+    "t2w",
+    "adc",
+    "hbv"
+  ],
+  "pooling": {
+    "pool1": [
+      1,
+      2,
+      2
+    ],
+    "pool2": [
+      1,
+      2,
+      2
+    ],
+    "pool3": [
+      2,
+      2,
+      2
+    ]
+  },
+  "final_pooling": "global_avg_plus_global_max",
+  "split_mode": "hardcoded_folds",
+  "threshold": 0.44
+}

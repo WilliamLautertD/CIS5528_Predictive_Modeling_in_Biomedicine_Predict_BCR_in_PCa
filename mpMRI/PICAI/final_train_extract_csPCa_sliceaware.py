@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 # 1) CONFIG
 # =========================
 # Modes
-RUN_TRAIN_FINAL = True
+RUN_TRAIN_FINAL = False
 RUN_EXTRACT_CHIMERA = True
 
 # Source cohort: PI-CAI
@@ -29,7 +29,7 @@ PICAI_LABELS_CSV = "marksheet-2.csv"
 PICAI_GLAND_MASK_DIR = "picai_labels/anatomical_delineations/whole_gland/AI/Guerbet23"
 
 # Target cohort: CHIMERA
-CHIMERA_ROOT_DIR = "CHIMERA/radiology/images"
+CHIMERA_ROOT_DIR = "/home/lauterw/project_MRI/CHIMERA/radiology/images"
 
 TRAIN_BCR_POS = ['1003', '1010', '1030', '1041', '1064', '1086', '1100', '1106', '1127', '1135', '1137', '1165', '1169', '1185', '1195', '1208', '1214', '1217', '1219', '1240', '1258', '1287']
 TRAIN_BCR_NEG = ['1021', '1026', '1028', '1031', '1035', '1048', '1052', '1056', '1060', '1062', '1066', '1071', '1094', '1112', '1114', '1117', '1123', '1129', '1136', '1140', '1141', '1149', '1174', '1179', '1186', '1188', '1192', '1205', '1206', '1207', '1211', '1212', '1216', '1223', '1227', '1260', '1261', '1262', '1264', '1269', '1279', '1282', '1284', '1285', '1290', '1291', '1293', '1294', '1296', '1298', '1299', '1301', '1303', '1304']
@@ -41,7 +41,7 @@ CHIMERA_LABELS = {pid: 1 for pid in (TRAIN_BCR_POS + TEST_BCR_POS)}
 CHIMERA_LABELS.update({pid: 0 for pid in (TRAIN_BCR_NEG + TEST_BCR_NEG)})
 
 # Output
-OUT_DIR = "outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings"
+OUT_DIR = "outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D"
 os.makedirs(OUT_DIR, exist_ok=True)
 FINAL_MODEL_PATH = os.path.join(OUT_DIR, "best_csPCa_mri_final.pt")
 
@@ -655,3 +655,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

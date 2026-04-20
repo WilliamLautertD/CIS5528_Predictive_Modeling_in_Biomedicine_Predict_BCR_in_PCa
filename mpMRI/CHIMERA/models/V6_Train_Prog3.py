@@ -420,7 +420,7 @@ def eval_one_epoch(model, loader, criterion, return_predictions=False):
             loss = criterion(logits, y)
 
             prob = torch.softmax(logits, dim=1)[:, 1]
-            preds = logits.argmax(dim=1)
+            preds = (prob >= 0.44).long()
 
             total_loss += loss.item() * x.size(0)
             y_true.extend(y.cpu().numpy().tolist())

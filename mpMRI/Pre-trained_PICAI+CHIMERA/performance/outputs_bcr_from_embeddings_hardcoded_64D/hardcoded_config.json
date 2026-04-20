@@ -1,0 +1,20 @@
+{
+  "embeddings_npy": "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_chimera_csPCa_embeddings_Dim_64D/chimera_all_embeddings.npy",
+  "embedding_ids_csv": "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_chimera_csPCa_embeddings_Dim_64D/chimera_all_embedding_ids.csv",
+  "aggregation_meta": {
+    "raw_shape": [
+      95,
+      64
+    ],
+    "aggregation": "auto",
+    "used_shape": [
+      95,
+      64
+    ],
+    "aggregation_applied": "none"
+  },
+  "classifier": "StandardScaler + LogisticRegression(class_weight='balanced', solver='liblinear')",
+  "threshold": 0.5,
+  "seed": 42,
+  "n_folds": 5
+}

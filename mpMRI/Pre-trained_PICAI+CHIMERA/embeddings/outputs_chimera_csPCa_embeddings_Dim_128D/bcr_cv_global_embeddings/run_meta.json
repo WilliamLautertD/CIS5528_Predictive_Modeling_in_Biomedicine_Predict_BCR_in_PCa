@@ -1,0 +1,11 @@
+{
+  "embedding_type": "global",
+  "embedding_shape": [
+    95,
+    128
+  ],
+  "n_folds": 5,
+  "classifier": "LogisticRegression",
+  "class_weight": "balanced",
+  "seed": 42
+}
