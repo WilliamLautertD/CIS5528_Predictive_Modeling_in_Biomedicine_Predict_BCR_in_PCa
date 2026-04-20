@@ -1,0 +1,52 @@
+[14:36:55] Device: cuda
+[14:36:55] Output dir: results/v7_winner_20260420_143655
+[14:36:55] GPU: NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition
+[14:36:55] Full train: 76  Test: 19
+[14:36:55] Inner train: 64 (BCR+ 19)  Inner val: 12 (BCR+ 3)
+[14:36:55] cell_mm=2.0  cell_px=4000  inner_pool=score_only  outer_top_k_R=200
+[14:36:55] Loading inner-train features to GPU from data/pathology/features/sampled_1024_200k_coords ...
+[14:37:08] Loading inner-val features to CPU ...
+[14:37:11] Inner-train R: min=81  median=966  max=2678  (outer_top_k_R=200)
+[14:37:11] GPU mem after inner-train preload: 45.3 GB
+[14:37:11] Model params: 328,579
+[14:37:13]   ep   0  train=1.0134  val=0.8508  trAUC=0.470  vlAUC=0.815  *
+[14:37:14]   ep   1  train=0.9527  val=0.9568  trAUC=0.605  vlAUC=0.704
+[14:37:15]   ep   2  train=0.9107  val=0.8726  trAUC=0.675  vlAUC=0.667
+[14:37:16]   ep   3  train=0.8055  val=0.7575  trAUC=0.815  vlAUC=0.778  *
+[14:37:17]   ep   4  train=0.7515  val=0.7165  trAUC=0.804  vlAUC=0.815  *
+[14:37:18]   ep   5  train=0.6984  val=0.7367  trAUC=0.854  vlAUC=0.815
+[14:37:19]   ep   6  train=0.7157  val=0.7378  trAUC=0.834  vlAUC=0.815
+[14:37:20]   ep   7  train=0.6610  val=0.7837  trAUC=0.856  vlAUC=0.815
+[14:37:21]   ep   8  train=0.6370  val=0.7718  trAUC=0.875  vlAUC=0.741
+[14:37:22]   ep   9  train=0.5932  val=0.7622  trAUC=0.918  vlAUC=0.852
+[14:37:23]   ep  10  train=0.5158  val=0.6333  trAUC=0.926  vlAUC=0.852  *
+[14:37:24]   ep  11  train=0.4727  val=0.6314  trAUC=0.944  vlAUC=0.852  *
+[14:37:26]   ep  12  train=0.4150  val=0.5349  trAUC=0.959  vlAUC=0.889  *
+[14:37:27]   ep  13  train=0.3737  val=0.4929  trAUC=0.970  vlAUC=0.926  *
+[14:37:28]   ep  14  train=0.2741  val=0.4813  trAUC=0.989  vlAUC=0.963  *
+[14:37:29]   ep  15  train=0.1966  val=0.3533  trAUC=1.000  vlAUC=0.963  *
+[14:37:30]   ep  16  train=0.1623  val=0.9018  trAUC=1.000  vlAUC=0.963
+[14:37:31]   ep  17  train=0.3096  val=0.4368  trAUC=0.973  vlAUC=0.926
+[14:37:32]   ep  18  train=0.1777  val=0.4387  trAUC=0.996  vlAUC=0.963
+[14:37:33]   ep  19  train=0.0887  val=0.5194  trAUC=1.000  vlAUC=0.926
+[14:37:34]   ep  20  train=0.0660  val=0.5095  trAUC=1.000  vlAUC=0.926
+[14:37:35]   ep  21  train=0.0395  val=0.5373  trAUC=1.000  vlAUC=0.926
+[14:37:36]   ep  22  train=0.0301  val=0.6476  trAUC=1.000  vlAUC=0.926
+[14:37:37]   ep  23  train=0.0183  val=0.4742  trAUC=1.000  vlAUC=0.926
+[14:37:38]   ep  24  train=0.0230  val=0.5779  trAUC=1.000  vlAUC=0.926
+[14:37:39]   ep  25  train=0.1015  val=1.1586  trAUC=1.000  vlAUC=0.815
+[14:37:40]   ep  26  train=0.2741  val=0.5071  trAUC=0.981  vlAUC=0.963
+[14:37:41]   ep  27  train=0.1074  val=0.5811  trAUC=0.999  vlAUC=0.926
+[14:37:42]   ep  28  train=0.0498  val=0.8378  trAUC=1.000  vlAUC=0.926
+[14:37:43]   ep  29  train=0.0330  val=0.6436  trAUC=1.000  vlAUC=0.926
+[14:37:44]   ep  30  train=0.0348  val=0.5385  trAUC=1.000  vlAUC=0.926
+[14:37:44]   Early stop at epoch 30 (best epoch 15, val_loss 0.3533)
+[14:37:44] Saved weights -> results/v7_winner_20260420_143655/v7_winner.pt (best epoch 15, val_loss 0.3533)
+[14:37:44] GPU mem after free: 0.0 GB
+[14:37:44] Evaluating on 19 held-out test patients ...
+[14:37:49] TEST (n=19, BCR+ 5): AUC=0.800  Acc=0.789  BAcc=0.793  F1=0.667
+[14:37:49] Extracting bag embeddings for all 95 patients ...
+[14:38:08] Embedding matrix: (95, 256)  dtype=float32
+[14:38:08] Saved -> results/v7_winner_20260420_143655/bag_embeddings.npz
+[14:38:08] Saved config -> results/v7_winner_20260420_143655/config.json
+[14:38:08] Done!

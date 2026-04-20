@@ -1,0 +1,62 @@
+{
+  "run_ts": "20260420_143655",
+  "winner_hp": {
+    "in_dim": 1024,
+    "hidden_dim": 256,
+    "attn_dim": 128,
+    "dropout": 0.8,
+    "weight_decay": 0.01,
+    "cell_mm": 2.0,
+    "inner_pool": "score_only",
+    "outer_top_k_R": 200,
+    "learnable_temp": true,
+    "lr": 0.0001,
+    "max_epochs": 100,
+    "min_epochs": 10,
+    "patience": 15,
+    "n_internal_val": 12
+  },
+  "n_tiles": 200000,
+  "feature_dir": "data/pathology/features/sampled_1024_200k_coords",
+  "split_file": "data/full_split.csv",
+  "split_column": "full_split",
+  "seed": 430,
+  "device": "cuda",
+  "git_sha": "d581b7f87f62e9174fdd9526de60c6e416bcb488",
+  "best_epoch": 15,
+  "best_val_loss": 0.35327979177236557,
+  "internal_val_patient_ids": [
+    "1260",
+    "1269",
+    "1031",
+    "1294",
+    "1287",
+    "1282",
+    "1135",
+    "1010",
+    "1117",
+    "1141",
+    "1112",
+    "1149"
+  ],
+  "n_inner_train": 64,
+  "n_inner_val": 12,
+  "n_test": 19,
+  "embedding_dim": 256,
+  "test_metrics": {
+    "auc": 0.8,
+    "acc": 0.7894736842105263,
+    "bacc": 0.7928571428571429,
+    "f1": 0.6666666666666666,
+    "n": 19,
+    "n_pos": 5
+  },
+  "outputs": {
+    "weights": "v7_winner.pt",
+    "embeddings": "bag_embeddings.npz",
+    "test_predictions": "test_predictions.csv",
+    "test_metrics": "test_metrics.json",
+    "train_log": "train_log.csv"
+  },
+  "caveat": "Test AUC is a single 19-patient point estimate; v7 winner HPs were selected using this same test set (optimistic upper bound). OOF (0.740) is the honest cohort-wide lower bound. Train-set embeddings are slightly optimistic: inner-train patients are in-sample (in_sample=1 in npz); 12 internal-val + 19 test are out-of-sample."
+}
