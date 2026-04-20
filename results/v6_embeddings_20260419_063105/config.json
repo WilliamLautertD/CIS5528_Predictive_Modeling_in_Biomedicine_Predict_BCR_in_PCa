@@ -1,0 +1,49 @@
+{
+  "run_ts": "20260419_063105",
+  "winner_hp": {
+    "in_dim": 1024,
+    "hidden_dim": 256,
+    "attn_dim": 128,
+    "dropout": 0.5,
+    "top_k": 10000,
+    "learnable_temp": true,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "max_epochs": 100,
+    "patience": 15,
+    "n_internal_val": 12
+  },
+  "n_tiles": 200000,
+  "feature_dir": "data/pathology/features/sampled_1024_200k",
+  "split_file": "data/full_split.csv",
+  "split_column": "full_split",
+  "seed": 430,
+  "device": "cuda",
+  "git_sha": "7004d5d0becebbf30b2c3fb32d6a87ed55355ab6",
+  "best_epoch": 15,
+  "best_val_loss": 0.40304645895957947,
+  "internal_val_patient_ids": [
+    "1260",
+    "1269",
+    "1031",
+    "1294",
+    "1287",
+    "1282",
+    "1135",
+    "1010",
+    "1117",
+    "1141",
+    "1112",
+    "1149"
+  ],
+  "n_inner_train": 64,
+  "n_inner_val": 12,
+  "n_test": 19,
+  "embedding_dim": 256,
+  "outputs": {
+    "weights": "v6_winner.pt",
+    "embeddings": "bag_embeddings.npz",
+    "train_log": "train_log.csv"
+  },
+  "caveat": "Train-set embeddings are slightly optimistic: inner-train patients are in-sample (in_sample=1 in npz). Inner-val patients (in_sample=0, split=train) and test patients (split=test) are out-of-sample. For honest train embeddings, redo via 5-fold OOF inference."
+}
