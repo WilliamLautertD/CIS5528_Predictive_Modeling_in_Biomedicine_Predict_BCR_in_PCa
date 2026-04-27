@@ -17,9 +17,9 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_m
 # ============================================================
 # CONFIG
 # ============================================================
-EMBEDDINGS_NPY = "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_chimera_csPCa_embeddings_Dim_128D/chimera_all_embeddings.npy"
-EMBEDDING_IDS_CSV = "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_chimera_csPCa_embeddings_Dim_128D/chimera_all_embedding_ids.csv"
-OUT_DIR = "../Pre-trained_PICAI+CHIMERA/performance/outputs_bcr_from_embeddings_predefined_128D"
+EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_global_embeddings.npy"
+EMBEDDING_IDS_CSV = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_embedding_ids.csv"
+OUT_DIR = "Pre-trained_PICAI+CHIMERA/performance/outputs_bcr_from_embeddings_predefined_128D_batch_12"
 
 SEED = 42
 AGGREGATION = "auto"   # auto | mean_tokens | flatten_tokens

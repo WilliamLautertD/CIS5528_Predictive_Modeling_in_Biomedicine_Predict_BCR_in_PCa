@@ -16,8 +16,8 @@ from sklearn.pipeline import Pipeline
 # CONFIG
 # =========================================================
 # Input slice-aware embeddings from CHIMERA extraction
-EMBEDDINGS_NPY = "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128D/chimera_all_slice_embeddings.npy"
-EMBEDDING_IDS_CSV = "../Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128D/chimera_all_embedding_ids.csv"
+EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_slice_embeddings.npy"
+EMBEDDING_IDS_CSV = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_embedding_ids.csv"
 
 # Which split protocol to run: {"predefined", "hardcoded", "both"}
 RUN_MODE = "both"
@@ -34,10 +34,10 @@ REDUCTION = "mean_max"
 SEED = 42
 MAX_ITER = 5000
 C = 1.0
-THRESHOLD = 0.50
+THRESHOLD = 0.45
 
 # Output
-BASE_OUT_DIR = "../Pre-trained_PICAI+CHIMERA/performance/outputs_bcr_from_slice_aware_embeddings_24x128D"
+BASE_OUT_DIR = "Pre-trained_PICAI+CHIMERA/performance/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12"
 os.makedirs(BASE_OUT_DIR, exist_ok=True)
 
 # =========================================================

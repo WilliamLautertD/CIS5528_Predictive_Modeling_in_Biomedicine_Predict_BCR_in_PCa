@@ -1,0 +1,9 @@
+{
+  "embeddings_npy": "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_slice_embeddings.npy",
+  "embedding_ids_csv": "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_embedding_ids.csv",
+  "run_mode": "hardcoded",
+  "reduction": "flatten",
+  "classifier": "StandardScaler + LogisticRegression(class_weight='balanced')",
+  "threshold": 0.45,
+  "n_folds": 5
+}

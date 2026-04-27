@@ -1,0 +1,6 @@
+{
+  "num_cases": 95,
+  "num_pos": 27,
+  "num_neg": 68,
+  "source_model": "outputs_csPCa_mri_final_model_and_embeddings_PICAI_CHIMERA_all_labels_Dim_128D/best_csPCa_mri_final.pt"
+}
