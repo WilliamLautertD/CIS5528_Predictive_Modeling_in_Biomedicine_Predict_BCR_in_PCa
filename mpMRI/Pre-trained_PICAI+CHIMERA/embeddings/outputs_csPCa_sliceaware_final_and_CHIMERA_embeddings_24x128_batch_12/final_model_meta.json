@@ -1,0 +1,16 @@
+{
+  "slice_mode": "24x128",
+  "slice_tokens": 24,
+  "slice_embed_dim": 128,
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "channels": [
+    "t2w",
+    "adc",
+    "hbv"
+  ],
+  "device": "cuda"
+}
