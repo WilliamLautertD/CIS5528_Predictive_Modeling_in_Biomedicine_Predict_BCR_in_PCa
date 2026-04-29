@@ -34,7 +34,7 @@ REDUCTION = "mean"
 SEED = 42
 MAX_ITER = 5000
 C = 1.0
-THRESHOLD = 0.3
+THRESHOLD = 0.4
 
 # Output
 BASE_OUT_DIR = "Pre-trained_PICAI+CHIMERA/performance/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128_batch_12"
