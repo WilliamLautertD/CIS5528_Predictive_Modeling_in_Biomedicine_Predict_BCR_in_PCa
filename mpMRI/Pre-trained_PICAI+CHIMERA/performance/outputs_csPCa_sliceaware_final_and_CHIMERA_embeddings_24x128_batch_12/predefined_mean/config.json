@@ -4,7 +4,7 @@
   "run_mode": "predefined",
   "reduction": "mean",
   "classifier": "StandardScaler + LogisticRegression(class_weight='balanced')",
-  "threshold": 0.3,
+  "threshold": 0.4,
   "train_n": 76,
   "test_n": 19
 }
