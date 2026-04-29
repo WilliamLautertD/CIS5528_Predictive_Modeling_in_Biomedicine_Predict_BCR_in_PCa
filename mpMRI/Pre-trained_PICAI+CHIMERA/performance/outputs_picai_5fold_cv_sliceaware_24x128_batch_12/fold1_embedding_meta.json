@@ -1,0 +1,43 @@
+{
+  "num_cases": 300,
+  "slice_embed_mode": "24x128",
+  "slice_embedding_shape": [
+    300,
+    24,
+    128
+  ],
+  "global_embedding_shape": [
+    300,
+    128
+  ],
+  "target_shape": [
+    48,
+    96,
+    96
+  ],
+  "channels": [
+    "t2w",
+    "adc",
+    "hbv"
+  ],
+  "pooling": {
+    "pool1": [
+      1,
+      2,
+      2
+    ],
+    "pool2": [
+      1,
+      2,
+      2
+    ],
+    "pool3": [
+      1,
+      2,
+      2
+    ]
+  },
+  "depth_tokens": 24,
+  "slice_embed_dim": 128,
+  "global_embed_dim": 128
+}

@@ -16,8 +16,8 @@ from sklearn.pipeline import Pipeline
 # CONFIG
 # =========================================================
 # Input slice-aware embeddings from CHIMERA extraction
-EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_slice_embeddings.npy"
-EMBEDDING_IDS_CSV = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_embedding_ids.csv"
+EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128_batch_12/chimera_all_slice_embeddings.npy"
+EMBEDDING_IDS_CSV = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128_batch_12/chimera_all_embedding_ids.csv"
 
 # Which split protocol to run: {"predefined", "hardcoded", "both"}
 RUN_MODE = "both"
@@ -28,16 +28,16 @@ RUN_MODE = "both"
 #   "max"       -> max over tokens => (N, D)
 #   "mean_max"  -> concat(mean, max) => (N, 2D)
 #   "flatten"   -> flatten all tokens => (N, T*D)
-REDUCTION = "mean_max"
+REDUCTION = "mean"
 
 # Repro / classifier
 SEED = 42
 MAX_ITER = 5000
 C = 1.0
-THRESHOLD = 0.45
+THRESHOLD = 0.3
 
 # Output
-BASE_OUT_DIR = "Pre-trained_PICAI+CHIMERA/performance/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12"
+BASE_OUT_DIR = "Pre-trained_PICAI+CHIMERA/performance/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_24x128_batch_12"
 os.makedirs(BASE_OUT_DIR, exist_ok=True)
 
 # =========================================================
