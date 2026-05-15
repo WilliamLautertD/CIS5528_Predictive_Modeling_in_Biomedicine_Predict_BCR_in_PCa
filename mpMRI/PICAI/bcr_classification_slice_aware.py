@@ -16,7 +16,7 @@ from sklearn.pipeline import Pipeline
 # CONFIG
 # =========================================================
 # Input slice-aware embeddings from CHIMERA extraction
-EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_global_embeddings.npy"
+EMBEDDINGS_NPY = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_slice_embeddings.npy"
 EMBEDDING_IDS_CSV = "Pre-trained_PICAI+CHIMERA/embeddings/outputs_csPCa_sliceaware_final_and_CHIMERA_embeddings_48x128D_batch_12/chimera_all_embedding_ids.csv"
 
 # Which split protocol to run: {"predefined", "hardcoded", "both"}
